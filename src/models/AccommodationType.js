@@ -9,4 +9,8 @@ const accommodationTypeSchema = new mongoose.Schema(
 );
 
 export default mongoose.models.accommodationType ||
-    mongoose.model("accommodationType", accommodationTypeSchema);
+    mongoose.model(
+        "accommodationType",
+        accommodationTypeSchema,
+        "accommodationTypes",
+    );

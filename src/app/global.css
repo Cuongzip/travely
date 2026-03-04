@@ -1,0 +1,48 @@
+/* import font */
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-VariableFont_opsz,wght.ttf");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Italic-VariableFont_opsz,wght.ttf");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --primary-color: #25619e;
+
+    --white: #ffffff;
+    --black: #252525;
+
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+}
+
+/* Tablet */
+@media (min-width: 740px) {
+    .container {
+        padding: 0 24px;
+    }
+}
+
+/* PC */
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 32px;
+    }
+}
