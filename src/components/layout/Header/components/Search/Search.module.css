@@ -1,0 +1,83 @@
+.trigger {
+    margin: 0 60px;
+    background-color: rgb(231, 227, 227);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.trigger i {
+    color: var(--text-muted);
+}
+.trigger:hover i {
+    color: var(--text-primary);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.open {
+    display: flex;
+}
+.form {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.group {
+    background-color: rgb(48, 48, 48);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    gap: 15px;
+    box-shadow: -3px 3px 0 var(--black) inset;
+    min-width: 300px;
+    flex: 1;
+}
+.input {
+    background-color: transparent;
+    color: var(--text-primary);
+    flex: 1;
+}
+.group span {
+    font-size: 1.3rem;
+}
+
+.group i {
+    font-size: 2.3rem;
+}
+.box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.line {
+    height: 100%;
+    width: 3px;
+    background-color: var(--black);
+}
+button.button {
+    font-size: 1.4rem;
+}
+@media (max-width: 850px) {
+    .trigger {
+        margin-right: 30px;
+    }
+}
