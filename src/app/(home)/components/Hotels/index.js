@@ -55,6 +55,40 @@ export default function Hotels() {
                         watchSlidesProgress={true}
                         slideVisibleClass="swiper-slide-visible"
                         className={styles.slider}
+                        breakpoints={{
+                            // Khi màn hình >= 320px (mobile nhỏ)
+                            320: {
+                                slidesPerView: 1.2,
+                                spaceBetween: 10,
+                                effect: "coverflow",  // Đổi thành coverflow
+                                coverflowEffect: {    // Các tham số này sẽ có tác dụng
+                                    rotate: 0,
+                                    stretch: 0,
+                                    depth: 90,        // Giảm depth cho mobile
+                                    modifier: 1.5,    // Giảm modifier
+                                    slideShadows: false
+                                }
+                            },
+                            // Khi màn hình >= 640px (mobile lớn / tablet nhỏ)
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 60,
+                                effect: "coverflow",
+                                coverflowEffect: {    // Các tham số này sẽ có tác dụng
+                                    rotate: 0,
+                                    stretch: 0,
+                                    depth: 90,        // Giảm depth cho mobile
+                                    modifier: 1.5,    // Giảm modifier
+                                    slideShadows: false
+                                }
+                            },
+                            // Khi màn hình >= 1024px (desktop)
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 40,
+                                effect: "coverflow",
+                            }
+                        }}
                     >
                         {hotels.map((hotel, index) => (
                             <SwiperSlide key={hotel._id}>

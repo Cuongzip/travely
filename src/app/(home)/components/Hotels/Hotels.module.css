@@ -86,14 +86,19 @@
     font-size: 13px;
     font-weight: 700;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.4s ease;
+}
+
+.card:hover .ratingBadge {
+    background-color: #f4a460;
 }
 
 .wishlistBtn {
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     background-color: white;
     border: 2px solid #ddd;
@@ -101,7 +106,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 15px;
     color: #666;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -128,6 +133,11 @@
     margin: 0;
     color: #333;
     line-height: 1.4;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .name {
+    color: #25619e;
 }
 
 .price {
@@ -233,6 +243,119 @@
     }
 }
 
+@media (max-width: 480px) {
+    .hotels {
+        padding: 30px 0;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sliderWrapper {
+        padding: 10px 0;
+    }
+
+    /* Điều chỉnh card cho mobile */
+    .card {
+        border-radius: 12px;
+        margin: 0 5px;
+    }
+
+    .info {
+        padding: 10px;
+    }
+
+    .name {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .price {
+        font-size: 8px;
+        font-weight: 100;
+    }
+    
+
+    .details {
+        gap: 12px;
+        font-size: 8px;
+    }
+
+    /* Nút điều hướng nhỏ hơn */
+    .prevBtn,
+    .nextBtn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .prevBtn {
+        left: 5px;
+    }
+
+    .nextBtn {
+        right: 5px;
+    }
+
+    /* Badge đánh giá và wishlist */
+    .ratingBadge {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .wishlistBtn {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile trung bình (480px - 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+    .hotels {
+        padding: 40px 0;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .prevBtn,
+    .nextBtn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .ratingBadge {
+        padding: 4px 9px;
+        font-size: 12px;
+    }
+}
+
+/* Tablet (640px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .hotels {
+        padding: 50px 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .prevBtn,
+    .nextBtn {
+        width: 40px;
+        height: 40px;
+    }
+}
 
 .sliderWrapper :global(.swiper-slide) {
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -257,5 +380,41 @@
     pointer-events: auto;
 }
 
+@media (max-width: 768px) {
+    .sliderWrapper :global(.swiper-slide) {
+        transform: scale(0.9) !important;
+        opacity: 0.8 !important;
+    }
+    
+    .sliderWrapper :global(.swiper-slide-active) {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+    }
+    
+    .sliderWrapper :global(.swiper-slide-prev),
+    .sliderWrapper :global(.swiper-slide-next) {
+        transform: scale(0.85) !important;
+        opacity: 0.7 !important;
+        pointer-events: auto;
+    }
+}
 
-
+@media (max-width: 480px) {
+    .sliderWrapper :global(.swiper-slide) {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    
+    .sliderWrapper :global(.swiper-slide-prev),
+    .sliderWrapper :global(.swiper-slide-next),
+    .sliderWrapper :global(.swiper-slide-active) {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+    }
+    
+    /* Ẩn bớt slide không active trên mobile nhỏ */
+    .sliderWrapper :global(.swiper-slide:not(.swiper-slide-active)) {
+        opacity: 0.5 !important;
+    }
+}
