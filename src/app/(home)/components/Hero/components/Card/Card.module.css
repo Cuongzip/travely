@@ -1,5 +1,6 @@
 .name {
     text-wrap: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
     width: 240px;
     font-weight: 600;
@@ -27,7 +28,7 @@
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 .imageActive {
     width: 300px;

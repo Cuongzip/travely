@@ -16,19 +16,24 @@
 }
 
 .modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
 
 .open {
-    display: flex;
+    visibility: visible;
+}
+.open .form {
+    top: 50%;
+    transform: translateY(0);
 }
 .form {
     background-color: rgba(0, 0, 0, 0.5);
@@ -37,6 +42,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    transform: translateY(50px);
+
+    transition: transform 0.3s ease;
 }
 .group {
     background-color: rgb(48, 48, 48);

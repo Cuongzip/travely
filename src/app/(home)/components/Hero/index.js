@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, useEffect, use } from "react";
+import { useState, useRef } from "react";
 import clsx from "clsx";
 
-import { Card } from "./components";
+import { Card, Sidebar } from "./components";
 import styles from "./Hero.module.css";
 
 // action = -1 is prev action
@@ -14,6 +14,7 @@ import styles from "./Hero.module.css";
 
 export default function Hero({ data }) {
     const [items, setItems] = useState(data);
+
     const [action, setAction] = useState(0);
     const [translateX, setTranslateX] = useState(0);
     const [isTransition, setIsTransition] = useState(false);
@@ -37,6 +38,7 @@ export default function Hero({ data }) {
 
     const handleNext = () => {
         if (action != 0) return;
+
         setAction(1);
         setTranslateX(-270);
         setIsTransition(true);
@@ -97,34 +99,14 @@ export default function Hero({ data }) {
             <div className={clsx("container", styles.wrap)}>
                 <div className={styles.main}>
                     <div className={styles.group}>
-                        <aside className={styles.sidebar}>
-                            <div className={styles.sidebarLine}></div>
-                            <ul className={styles.sidebarList}>
-                                {items.map((value, index) => {
-                                    return (
-                                        <li
-                                            key={index}
-                                            className={clsx(
-                                                styles.sidebarItem,
-                                                {
-                                                    [styles.sidebarItemActive]:
-                                                        index === activeIndex,
-                                                },
-                                            )}
-                                        >
-                                            {index + 1}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </aside>
-
+                        <Sidebar
+                            itemCount={items.length}
+                            activeIndex={activeIndex}
+                        />
                         <div className={styles.info}>
                             <div className={styles.viewportName}>
                                 <div
-                                    key={
-                                        items.at(action == -1 ? 0 : action).name
-                                    }
+                                    key={activeIndex}
                                     className={styles.trackName}
                                 >
                                     <h3 className={styles.infoName}>
@@ -143,10 +125,7 @@ export default function Hero({ data }) {
                             </div>
                             <div className={styles.viewportDescription}>
                                 <div
-                                    key={
-                                        items.at(action == -1 ? 0 : action)
-                                            .description
-                                    }
+                                    key={activeIndex}
                                     className={styles.trackDescription}
                                 >
                                     <p className={styles.infoDescription}>
@@ -184,8 +163,8 @@ export default function Hero({ data }) {
                             style={{
                                 transform: `translateX(${translateX}px)`,
                                 transition: isTransition
-                                    ? "all 0.6s ease"
-                                    : "all 0.00000000000001s ease",
+                                    ? "transform 0.6s ease"
+                                    : "transform 0.00000000000001s ease",
                             }}
                         >
                             {items.map((value, index) => {
@@ -193,7 +172,7 @@ export default function Hero({ data }) {
                                     <Card
                                         key={value.name}
                                         data={value.locations}
-                                        isActive={0 === index}
+                                        isActive={action === index}
                                     />
                                 );
                             })}
