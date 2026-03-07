@@ -2,7 +2,6 @@ import clsx from "clsx";
 
 import styles from "./Sidebar.module.css";
 export default function Sidebar({ itemCount, activeIndex }) {
-    console.log(Array(itemCount));
     return (
         <aside className={styles.sidebar}>
             <div className={styles.sidebarLine}></div>
