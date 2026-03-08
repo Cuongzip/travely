@@ -2,10 +2,13 @@ import { getHeroes } from "@/services";
 import {
     Hero,
     Hotels,
-    Features,
     AccommodationTypes,
+    Features,
     CallToAction,
 } from "./components";
+
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
     const heroes = await getHeroes();
     return (

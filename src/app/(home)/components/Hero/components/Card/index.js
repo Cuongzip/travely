@@ -24,7 +24,10 @@ export default function Card({ data, isActive }) {
                             className={clsx(styles.dot, {
                                 [styles.dotActive]: activeIndex === index,
                             })}
-                            onClick={() => setActiveIndex(index)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveIndex(index);
+                            }}
                         ></li>
                     );
                 })}
