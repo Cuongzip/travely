@@ -1,0 +1,155 @@
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--black);
+    opacity: 0.3;
+}
+.wrap {
+    position: relative;
+    padding-top: 80px;
+}
+div.main {
+    display: flex;
+    align-items: center;
+}
+.group {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.info {
+    margin-left: 30px;
+    margin-right: 20px;
+}
+.viewportName {
+    --height: 97px;
+    overflow: hidden;
+    height: var(--height);
+}
+.trackName {
+    animation: reveal 0.8s ease forwards;
+}
+.infoName {
+    font-weight: 800;
+    font-size: 8rem;
+    height: var(--height);
+}
+
+.viewportDescription {
+    --line-height: 21px;
+    --rowCount: 4;
+    overflow: hidden;
+    height: calc(var(--line-height) * var(--rowCount));
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.trackDescription {
+    animation: reveal 0.8s ease forwards;
+}
+.infoDescription {
+    color: var(--text-secondary);
+    line-height: var(--line-height);
+    height: calc(var(--line-height) * var(--rowCount));
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--rowCount);
+    -webkit-box-orient: vertical;
+}
+
+@keyframes reveal {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+.viewport {
+    display: flex;
+    overflow-x: hidden;
+    width: 100%;
+    flex: 1;
+    gap: 20px;
+    touch-action: pan-y;
+}
+.track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    height: 392px;
+}
+.tail {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.actions button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    transition: all ease 0.3s;
+}
+.actions button:hover {
+    scale: 0.9;
+}
+@media (max-width: 980px) {
+    .main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .wrap {
+        zoom: 0.9;
+    }
+    .actions {
+        display: none;
+    }
+}
+
+@media (max-width: 470px) {
+    .main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .wrap {
+        zoom: 0.7;
+    }
+}

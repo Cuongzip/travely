@@ -1,3 +1,4 @@
+import { getHeroes } from "@/services";
 import {
     Hero,
     Hotels,
@@ -5,10 +6,11 @@ import {
     AccommodationTypes,
     CallToAction,
 } from "./components";
-export default function Home() {
+export default async function Home() {
+    const heroes = await getHeroes();
     return (
         <>
-            <Hero />
+            <Hero data={heroes} />
             <Hotels />
             <Features />
             <AccommodationTypes />

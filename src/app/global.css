@@ -16,10 +16,18 @@
 }
 
 :root {
-    --primary-color: #25619e;
+    --primary-color: #296bac;
+    --primary-hover: #25619e;
 
     --white: #ffffff;
     --black: #252525;
+
+    --text-primary: var(--white);
+    --text-secondary: #e7eaed;
+    --text-muted: #9ca3af;
+    --text-inverse: var(--black);
+
+    --border-color: #dfe1e4;
 
     font-size: 62.5%;
 }
@@ -31,6 +39,49 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     font-family: "Inter", sans-serif;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+input {
+    border: none;
+}
+input:focus {
+    outline: none;
+}
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+i {
+    display: flex;
+}
+
+.button {
+    display: flex;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1.9rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    width: fit-content;
+    padding: 16px 21px;
+    border-radius: 8px;
+}
+.button:hover {
+    background-color: var(--primary-hover);
+}
+.container {
+    margin: 0 auto;
+    padding: 0 16px;
+    max-width: 1800px;
+    min-width: 375px;
 }
 
 /* Tablet */
