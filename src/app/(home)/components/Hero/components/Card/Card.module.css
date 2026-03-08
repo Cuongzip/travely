@@ -1,6 +1,3 @@
-.card {
-    pointer-events: auto;
-}
 .name {
     text-wrap: nowrap;
     overflow: hidden;
