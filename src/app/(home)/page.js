@@ -12,8 +12,8 @@ export default async function Home() {
         <>
             <Hero data={heroes} />
             <Hotels />
-            <Features />
             <AccommodationTypes />
+            <Features />
             <CallToAction />
         </>
     );
