@@ -2,8 +2,8 @@ import { getHeroes } from "@/services";
 import {
     Hero,
     Hotels,
-    AccommodationTypes,
     Features,
+    AccommodationTypes,
     CallToAction,
 } from "./components";
 
