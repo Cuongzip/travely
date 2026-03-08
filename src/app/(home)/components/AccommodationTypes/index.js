@@ -14,7 +14,7 @@ return (
     <section className={styles.section}>
     
     <div className={styles.header}>
-        <h2>Tìm kiếm theo loại hình lưu trú</h2>
+        <h2>Phân loại theo loại hình lưu trú</h2>
 
         <p>
         Bạn có thể dễ dàng tìm kiếm và lọc kết quả theo loại hình lưu trú.
