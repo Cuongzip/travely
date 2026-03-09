@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback, useLayoutEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBed, faHouse, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Hotels.module.css";
 
@@ -15,26 +13,11 @@ const getPositionClass = (diff) => {
   return styles.far;
 };
 
-export default function Hotels() {
-  const [hotels, setHotels] = useState([]);
+export default function Hotels({ data }) {
+  const hotels = data ?? [];
   const [currentIndex, setCurrentIndex] = useState(2);
   const viewportRef = useRef(null);
   const [trackOffset, setTrackOffset] = useState(0);
-
-  useEffect(() => {
-    const fetchHotels = async () => {
-      const res = await fetch("/api/hotels");
-      const data = await res.json();
-      const list = data.hotels || [];
-      setHotels(list);
-      // Nếu ít hơn 5 khách sạn, center = giữa danh sách
-      if (list.length > 0 && list.length < 5) {
-        setCurrentIndex(Math.min(2, Math.max(0, list.length - 1)));
-      }
-    };
-
-    fetchHotels();
-  }, []);
 
   useLayoutEffect(() => {
     const updateOffset = () => {
@@ -105,11 +88,11 @@ export default function Hotels() {
                         className={styles.img}
                       />
                       <div className={styles.ratingBadge}>
-                        <FontAwesomeIcon icon={faStar} />
+                        <i className="fi-br-star" aria-hidden="true" />
                         {hotel.rate?.toFixed(2) ?? "—"}
                       </div>
-                      <button type="button" className={styles.wishlistBtn}>
-                        <FontAwesomeIcon icon={faHeart} />
+                      <button type="button" className={styles.wishlistBtn} aria-label="Thêm vào yêu thích">
+                        <i className="fi-br-heart" aria-hidden="true" />
                       </button>
                     </div>
                     <div className={styles.info}>
@@ -117,11 +100,11 @@ export default function Hotels() {
                       <p className={styles.price}>{hotel.price}</p>
                       <div className={styles.details}>
                         <span>
-                          <FontAwesomeIcon icon={faBed} />
+                          <i className="fi-br-bed" aria-hidden="true" />
                           {hotel.bedroomCount}
                         </span>
                         <span>
-                          <FontAwesomeIcon icon={faHouse} />
+                          <i className="fi-br-home" aria-hidden="true" />
                           {hotel.area}
                         </span>
                       </div>
