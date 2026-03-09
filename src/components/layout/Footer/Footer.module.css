@@ -1,0 +1,166 @@
+.section {
+    background: linear-gradient(135deg, #1c1c1c, #222);
+    color: white;
+    padding: 70px 0;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 3.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.logo span {
+    color: var(--text-muted);
+    font-size: 1.6rem;
+}
+
+.start {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.start p {
+    color: var(--text-secondary);
+}
+
+.start button {
+    padding: 13px 20px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 30px 0;
+}
+
+.mid {
+    display: flex;
+    gap: 40px;
+}
+.newsletter {
+    flex: 1;
+}
+.newsletter h4 {
+    margin-bottom: 16px;
+}
+
+.input {
+    display: flex;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.input button {
+    padding: 10px 15px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.newsletter h3 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+.columns {
+    display: flex;
+    flex: 2;
+    gap: 20px;
+}
+.column {
+    flex: 1;
+}
+.column h4 {
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.column p {
+    color: var(--text-secondary);
+    margin: 25px 0;
+    cursor: pointer;
+}
+
+.column p:hover {
+    color: var(--primary-color);
+}
+
+.bottom {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legal {
+    display: flex;
+    gap: 30px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.social {
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.social span {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.social span:hover {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .top {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .start {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .mid {
+        flex-direction: column;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .social {
+        margin-top: 10px;
+    }
+}
+@media (max-width: 600px) {
+    .columns {
+        flex-direction: column;
+    }
+}

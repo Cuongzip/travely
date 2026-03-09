@@ -82,27 +82,27 @@ export default function Hero({ data }) {
         return () => clearInterval(intervalId.current);
     }, []);
 
-    const isPointerDown = useRef(false);
-    const clientX = useRef(0);
-    const isDrag = useRef("");
+    const isPressRef = useRef(false);
+    const clientXRef = useRef(0);
+    const isDragRef = useRef("");
     const viewportRef = useRef(null);
 
     const handlePointerDown = (e) => {
-        isPointerDown.current = true;
-        clientX.current = e.clientX;
+        isPressRef.current = true;
+        clientXRef.current = e.clientX;
     };
     const handlePointerMove = (e) => {
-        if (!isPointerDown.current) return;
-        const diff = e.clientX - clientX.current;
-        if (Math.abs(diff) > 8) isDrag.current = diff < 0 ? "left" : "right";
+        if (!isPressRef.current) return;
+        const diff = e.clientX - clientXRef.current;
+        if (Math.abs(diff) > 8) isDragRef.current = diff < 0 ? "next" : "prev";
     };
     const handlePointerUp = (e) => {
-        isPointerDown.current = false;
+        isPressRef.current = false;
 
-        if (isDrag.current === "right") handlePrev();
-        if (isDrag.current === "left") handleNext();
+        if (isDragRef.current === "prev") handlePrev();
+        if (isDragRef.current === "next") handleNext();
 
-        isDrag.current = "";
+        isDragRef.current = "";
     };
 
     return (
@@ -110,7 +110,7 @@ export default function Hero({ data }) {
             <div className={clsx(styles.background)}>
                 <Image
                     src={items[action + 1].backgroundImg}
-                    alt="background"
+                    alt={items[action + 1].name}
                     width={600}
                     height={400}
                 />

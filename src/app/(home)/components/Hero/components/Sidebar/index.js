@@ -6,7 +6,7 @@ export default function Sidebar({ itemCount, activeIndex }) {
         <aside className={styles.sidebar}>
             <div className={styles.sidebarLine}></div>
             <ul className={styles.sidebarList}>
-                {Array(4)
+                {Array(itemCount)
                     .fill()
                     .map((value, index) => {
                         return (

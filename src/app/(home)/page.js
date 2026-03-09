@@ -1,4 +1,4 @@
-import { getHeroes } from "@/services";
+import { getHeroes, getAccommodationTypes } from "@/services";
 import {
     Hero,
     Hotels,
@@ -11,12 +11,13 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
     const heroes = await getHeroes();
+    const accommodationTypes = await getAccommodationTypes();
     return (
         <>
             <Hero data={heroes} />
             <Hotels />
-            <AccommodationTypes />
             <Features />
+            <AccommodationTypes data={accommodationTypes} />
             <CallToAction />
         </>
     );

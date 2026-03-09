@@ -1,79 +1,75 @@
+import Image from "next/image";
+import clsx from "clsx";
+import Link from "next/link";
+
 import styles from "./CallToAction.module.css";
 
+const cities = [
+    { name: "Dubai", img: "/images/backgrounds/indonesia.webp" },
+    { name: "Paris", img: "/images/backgrounds/denmark.webp", big: true },
+    { name: "Tbilisi", img: "/images/backgrounds/italy.webp" },
+    { name: "Istanbul", img: "/images/backgrounds/japan.webp" },
+    { name: "Taiwan", img: "/images/locations/Dao-Padar.webp" },
+];
+
 export default function CallToAction() {
-return (
-    <section className={styles.section}>
-    <div className={styles.container}>
-        
-        {/* TOP */}
-        <div className={styles.top}>
-        <div className={styles.logo}>
-            Travelly<span>.com</span>
-        </div>
+    return (
+        <section className={styles.section}>
+            <div className="container">
+                <div className={styles.inner}>
+                    <div className={styles.left}>
+                        <h2>Luôn cập nhật thông tin mới nhất</h2>
 
-        <div className={styles.start}>
-            <p>Sẵn sàng bắt đầu?</p>
-            <button>Bắt đầu ngay</button>
-        </div>
-        </div>
+                        <p>
+                            Đăng ký để nhận email từ Travely.com với các chương
+                            trình khuyến mãi, ưu đãi hấp dẫn và thông tin về
+                            điểm đến, sản phẩm, dịch vụ mới giúp bạn lên kế
+                            hoạch cho chuyến đi dễ dàng hơn.
+                        </p>
 
-        <div className={styles.divider}></div>
+                        <div className={styles.form}>
+                            <input placeholder="Địa chỉ email của bạn" />
+                            <button className="button">Đăng ký</button>
+                        </div>
 
-        {/* FOOTER GRID */}
-        <div className={styles.grid}>
-        
-        {/* newsletter */}
-        <div className={styles.newsletter}>
-            <h4>Đăng ký nhận bản tin</h4>
+                        <span className={styles.note}>
+                            Hủy đăng ký bất cứ lúc nào. Xem chính sách
+                            <Link className={styles.link} href="/">
+                                &ensp;bảo mật.
+                            </Link>
+                        </span>
+                    </div>
 
-            <div className={styles.input}>
-            <input placeholder="Email address" />
-            <button>›</button>
+                    <div className={styles.right}>
+                        <div className={styles.header}>
+                            <h3>Điểm đến nổi bật</h3>
+                            <p>
+                                Những điểm đến được yêu thích nhất bởi du khách
+                            </p>
+                        </div>
+
+                        <div className={styles.grid}>
+                            {cities.map((city, i) => (
+                                <div
+                                    key={i}
+                                    className={clsx(styles.card, {
+                                        [styles.big]: city.big,
+                                    })}
+                                >
+                                    <Image
+                                        src={city.img}
+                                        alt={city.name}
+                                        width={300}
+                                        height={200}
+                                    />
+
+                                    <span>{city.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        {/* services */}
-        <div>
-            <h4>Dịch vụ</h4>
-            <p>Tiếp thị qua Email</p>
-            <p>Chiến dịch</p>
-            <p>Xây dựng thương hiệu</p>
-            <p>Sự kiện trực tiếp</p>
-        </div>
-
-        {/* about */}
-        <div>
-            <h4>Giới thiệu</h4>
-            <p>Câu chuyện</p>
-            <p>Lợi ích</p>
-            <p>Đội ngũ</p>
-            <p>Tuyển dụng</p>
-        </div>
-
-        {/* support */}
-        <div>
-            <h4>Hỗ trợ</h4>
-            <p>FAQs</p>
-            <p>Liên hệ</p>
-        </div>
-
-        </div>
-
-        {/* bottom */}
-        <div className={styles.bottom}>
-        <div className={styles.legal}>
-            <p>Điều khoản & Điều kiện</p>
-            <p>Chính sách bảo mật</p>
-        </div>
-
-        <div className={styles.social}>
-            <span>f</span>
-            <span>t</span>
-            <span>◎</span>
-        </div>
-        </div>
-
-    </div>
-    </section>
-);
+        </section>
+    );
 }
