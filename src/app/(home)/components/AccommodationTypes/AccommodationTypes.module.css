@@ -37,25 +37,52 @@
     transition: scale 0.4s ease;
     position: absolute;
     top: 50%;
+    z-index: 9;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 10;
+    transition:
+        background 0.3s,
+        color 0.3s,
+        transform 0.3s;
 }
+
 .arrow:hover {
-    scale: 0.9;
+    background: var(--primary-color);
+    color: #fff;
 }
+
 .arrowLeft {
     right: 100%;
     transform: translate(50%, -50%);
 }
-.disable {
-    cursor: not-allowed;
-}
-.disable:hover {
-    scale: 1;
-}
+
 .arrowRight {
     left: 100%;
     transform: translate(-50%, -50%);
 }
+
+.disable {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.disable:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
 .viewport {
     touch-action: pan-y;
     overflow: hidden;

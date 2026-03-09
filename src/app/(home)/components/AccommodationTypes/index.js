@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
-import styles from "./AccommodationTypes.module.css";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
+
+import styles from "./AccommodationTypes.module.css";
+import { Reveal } from "@/components";
 
 export default function AccommodationTypes({ data }) {
     const baseWidthRef = useRef(220);
@@ -69,14 +71,16 @@ export default function AccommodationTypes({ data }) {
     return (
         <section className={clsx(styles.section, "container")}>
             <div className={styles.header}>
-                <h2>Tìm kiếm theo loại hình lưu trú</h2>
+                <Reveal>
+                    <h2>Tìm kiếm theo loại hình lưu trú</h2>
 
-                <p>
-                    Bạn có thể dễ dàng tìm kiếm và lọc kết quả theo loại hình
-                    lưu trú. Tính năng này cho phép bạn lựa chọn khách sạn hoặc
-                    các phương án khác như nhà nghỉ, căn hộ du lịch hay
-                    homestay, phù hợp với sở thích và nhu cầu của mình.
-                </p>
+                    <p>
+                        Bạn có thể dễ dàng tìm kiếm và lọc kết quả theo loại
+                        hình lưu trú. Tính năng này cho phép bạn lựa chọn khách
+                        sạn hoặc các phương án khác như nhà nghỉ, căn hộ du lịch
+                        hay homestay, phù hợp với sở thích và nhu cầu của mình.
+                    </p>
+                </Reveal>
             </div>
 
             <div
@@ -101,20 +105,33 @@ export default function AccommodationTypes({ data }) {
                             transform: `translateX(-${activeIndex * (width + gapRef.current)}px)`,
                         }}
                     >
-                        {data.map((item, index) => (
-                            <div key={index} className={styles.card}>
-                                <span>{item.name}</span>
+                        {data.map((item, index) => {
+                            let content = (
+                                <div className={styles.card}>
+                                    <span>{item.name}</span>
 
-                                <div className={styles.image} style={{ width }}>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        width={600}
-                                        height={900}
-                                    />
+                                    <div
+                                        className={styles.image}
+                                        style={{ width }}
+                                    >
+                                        <Image
+                                            src={item.image}
+                                            alt={item.name}
+                                            width={600}
+                                            height={900}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                            if (index < visibleCountRef.current)
+                                content = (
+                                    <Reveal delay={100 * index}>
+                                        {content}
+                                    </Reveal>
+                                );
+
+                            return <div key={index}>{content}</div>;
+                        })}
                     </div>
                 </div>
 
