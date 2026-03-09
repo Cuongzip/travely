@@ -35,7 +35,7 @@ export default function Card({ data, isActive }) {
             <div className={styles.image}>
                 <Image
                     src={data[activeIndex].image}
-                    alt="location"
+                    alt={data[activeIndex].name}
                     width={300}
                     height={400}
                 />
