@@ -45,7 +45,7 @@ div.main {
     margin-right: 20px;
 }
 .viewportName {
-    --height: 97px;
+    --height: 100px;
     overflow: hidden;
     height: var(--height);
 }
@@ -53,23 +53,24 @@ div.main {
     animation: reveal 0.8s ease forwards;
 }
 .infoName {
-    font-weight: 800;
-    font-size: 8rem;
-    height: var(--height);
+    font-weight: 900;
+    font-size: 7.6rem;
+    line-height: var(--height);
+    text-transform: uppercase;
 }
 
 .viewportDescription {
-    --line-height: 21px;
+    --line-height: 20px;
     --rowCount: 4;
     overflow: hidden;
     height: calc(var(--line-height) * var(--rowCount));
-    margin-top: 10px;
     margin-bottom: 30px;
 }
 .trackDescription {
     animation: reveal 0.8s ease forwards;
 }
 .infoDescription {
+    font-size: 1.4rem;
     color: var(--text-secondary);
     line-height: var(--line-height);
     height: calc(var(--line-height) * var(--rowCount));
@@ -129,10 +130,10 @@ div.main {
 .actions button:hover {
     scale: 0.9;
 }
-@media (max-width: 980px) {
+@media (max-width: 1090px) {
     .main {
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
     }
 
     .wrap {
@@ -143,12 +144,7 @@ div.main {
     }
 }
 
-@media (max-width: 470px) {
-    .main {
-        flex-direction: column;
-        gap: 20px;
-    }
-
+@media (max-width: 500px) {
     .wrap {
         zoom: 0.7;
     }

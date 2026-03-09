@@ -2,12 +2,11 @@ import clsx from "clsx";
 
 import styles from "./Sidebar.module.css";
 export default function Sidebar({ itemCount, activeIndex }) {
-    console.log(Array(itemCount));
     return (
         <aside className={styles.sidebar}>
             <div className={styles.sidebarLine}></div>
             <ul className={styles.sidebarList}>
-                {Array(4)
+                {Array(itemCount)
                     .fill()
                     .map((value, index) => {
                         return (

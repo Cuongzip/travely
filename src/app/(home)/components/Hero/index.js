@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 
 import { Card, Sidebar } from "./components";
@@ -11,86 +11,106 @@ import styles from "./Hero.module.css";
 // action = -1 is prev action
 // action = 1 is next action
 // action = 0 is none action
+const SLIDE_WIDTH = 270;
 
 export default function Hero({ data }) {
     const [items, setItems] = useState(data);
 
     const [action, setAction] = useState(0);
-    const [translateX, setTranslateX] = useState(0);
-    const [isTransition, setIsTransition] = useState(false);
+
     const [activeIndex, setActiveIndex] = useState(0);
+
     const trackRef = useRef(null);
 
     const handlePrev = () => {
         if (action != 0) return;
 
-        const newItems = [...items];
-        const lastItem = newItems.pop();
-        newItems.unshift(lastItem);
-        setItems(newItems);
         setAction(-1);
-        setTranslateX(-270);
-        setIsTransition(false);
 
-        if (activeIndex <= 0) return setActiveIndex(items.length - 1);
-        setActiveIndex(activeIndex - 1);
+        setActiveIndex((prev) => {
+            if (prev <= 0) return items.length - 1;
+            return prev - 1;
+        });
+        resetAutoSlide();
     };
 
     const handleNext = () => {
         if (action != 0) return;
 
         setAction(1);
-        setTranslateX(-270);
-        setIsTransition(true);
-        if (activeIndex >= items.length - 1) return setActiveIndex(0);
-        setActiveIndex(activeIndex + 1);
+
+        setActiveIndex((prev) => {
+            if (prev >= items.length - 1) return 0;
+            return prev + 1;
+        });
+        resetAutoSlide();
     };
 
     const handleTransitionend = (e) => {
         if (e.target != trackRef.current) return;
-
+        const newItems = [...items];
         if (action === 1) {
-            const newItems = [...items];
             const firstItem = newItems.shift();
             newItems.push(firstItem);
-            setItems(newItems);
-            setIsTransition(false);
         } else if (action === -1) {
-            setIsTransition(true);
+            const lastItem = newItems.pop();
+            newItems.unshift(lastItem);
         }
-        setTranslateX(0);
+        setItems(newItems);
+
         setAction(0);
     };
 
-    const isPointerDown = useRef(false);
-    const clientX = useRef(0);
-    const isDrag = useRef("");
+    const intervalId = useRef(0);
+
+    const startAutoSlide = () => {
+        intervalId.current = setInterval(() => {
+            handleNext();
+        }, 5000);
+    };
+    const stopAutoSlide = () => {
+        clearInterval(intervalId.current);
+    };
+    const resetAutoSlide = () => {
+        clearInterval(intervalId.current);
+        startAutoSlide();
+    };
+
+    useEffect(() => {
+        startAutoSlide();
+
+        return () => clearInterval(intervalId.current);
+    }, []);
+
+    const isPressRef = useRef(false);
+    const clientXRef = useRef(0);
+    const isDragRef = useRef("");
     const viewportRef = useRef(null);
 
     const handlePointerDown = (e) => {
-        isPointerDown.current = true;
-        clientX.current = e.clientX;
-        viewportRef.current.setPointerCapture(e.pointerId);
+        isPressRef.current = true;
+        clientXRef.current = e.clientX;
     };
     const handlePointerMove = (e) => {
-        if (!isPointerDown.current) return;
-        const diff = e.clientX - clientX.current;
-        if (Math.abs(diff) > 8) isDrag.current = diff < 0 ? "left" : "right";
+        if (!isPressRef.current) return;
+        const diff = e.clientX - clientXRef.current;
+        if (Math.abs(diff) > 8) isDragRef.current = diff < 0 ? "next" : "prev";
     };
     const handlePointerUp = (e) => {
-        isPointerDown.current = false;
-        viewportRef.current.releasePointerCapture(e.pointerId);
+        isPressRef.current = false;
 
-        if (isDrag.current === "right") handlePrev();
-        if (isDrag.current === "left") handleNext();
+        if (isDragRef.current === "prev") handlePrev();
+        if (isDragRef.current === "next") handleNext();
+
+        isDragRef.current = "";
     };
 
     return (
         <section className={styles.hero}>
             <div className={clsx(styles.background)}>
                 <Image
-                    src={items.at(action).backgroundImg}
-                    alt="background"
+                    src={items[action + 1].backgroundImg}
+                    alt={items[action + 1].name}
                     width={600}
                     height={400}
                 />
@@ -110,16 +130,10 @@ export default function Hero({ data }) {
                                     className={styles.trackName}
                                 >
                                     <h3 className={styles.infoName}>
-                                        {
-                                            items[
-                                                action === -1 || action === 0
-                                                    ? 1
-                                                    : 0
-                                            ].name
-                                        }
+                                        {items[1].name}
                                     </h3>
                                     <h3 className={styles.infoName}>
-                                        {items.at(action).name}
+                                        {items[action + 1].name}
                                     </h3>
                                 </div>
                             </div>
@@ -129,16 +143,10 @@ export default function Hero({ data }) {
                                     className={styles.trackDescription}
                                 >
                                     <p className={styles.infoDescription}>
-                                        {
-                                            items[
-                                                action === -1 || action === 0
-                                                    ? 1
-                                                    : 0
-                                            ].description
-                                        }
+                                        {items[1].description}
                                     </p>
                                     <p className={styles.infoDescription}>
-                                        {items.at(action).description}
+                                        {items[action + 1].description}
                                     </p>
                                 </div>
                             </div>
@@ -155,16 +163,19 @@ export default function Hero({ data }) {
                         onPointerDown={(e) => handlePointerDown(e)}
                         onPointerMove={(e) => handlePointerMove(e)}
                         onPointerUp={(e) => handlePointerUp(e)}
+                        onPointerEnter={stopAutoSlide}
+                        onMouseLeave={startAutoSlide}
                     >
                         <div
                             ref={trackRef}
                             className={styles.track}
                             onTransitionEnd={(e) => handleTransitionend(e)}
                             style={{
-                                transform: `translateX(${translateX}px)`,
-                                transition: isTransition
-                                    ? "transform 0.6s ease"
-                                    : "transform 0.00000000000001s ease",
+                                transform: `translateX(${-(action + 1) * SLIDE_WIDTH}px)`,
+                                transition:
+                                    action != 0
+                                        ? "transform 0.6s ease"
+                                        : "none",
                             }}
                         >
                             {items.map((value, index) => {
@@ -172,7 +183,7 @@ export default function Hero({ data }) {
                                     <Card
                                         key={value.name}
                                         data={value.locations}
-                                        isActive={action === index}
+                                        isActive={action + 1 === index}
                                     />
                                 );
                             })}

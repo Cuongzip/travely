@@ -18,6 +18,7 @@ export default function Header() {
                 setIsScrolled(false);
             }
         };
+        handleScroll();
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);

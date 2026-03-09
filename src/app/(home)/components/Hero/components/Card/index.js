@@ -24,7 +24,10 @@ export default function Card({ data, isActive }) {
                             className={clsx(styles.dot, {
                                 [styles.dotActive]: activeIndex === index,
                             })}
-                            onClick={() => setActiveIndex(index)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveIndex(index);
+                            }}
                         ></li>
                     );
                 })}
@@ -32,7 +35,7 @@ export default function Card({ data, isActive }) {
             <div className={styles.image}>
                 <Image
                     src={data[activeIndex].image}
-                    alt="location"
+                    alt={data[activeIndex].name}
                     width={300}
                     height={400}
                 />
