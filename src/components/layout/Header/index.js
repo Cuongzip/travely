@@ -25,15 +25,19 @@ export default function Header() {
 
     return (
         <header
-            className={clsx("container", styles.header, {
+            className={clsx(styles.header, {
                 [styles.scrolled]: isScrolled,
             })}
         >
-            <Logo />
-            <Nav />
-            <Search />
-            <User />
-            <Sidebar />
+            <div className="container">
+                <div className={styles.inner}>
+                    <Logo />
+                    <Nav />
+                    <Search />
+                    <User />
+                    <Sidebar />
+                </div>
+            </div>
         </header>
     );
 }

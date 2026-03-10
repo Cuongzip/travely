@@ -134,8 +134,12 @@ export default function Hotels({ data }) {
                                                         className="fi-br-bed"
                                                         aria-hidden="true"
                                                     />
-                                                    {hotel.bedroomCount} Phòng
-                                                    ngủ
+                                                    {hotel.bedroomCount}
+                                                    <span
+                                                        className={styles.label}
+                                                    >
+                                                        Phòng ngủ
+                                                    </span>
                                                 </span>
                                                 <span>
                                                     <i

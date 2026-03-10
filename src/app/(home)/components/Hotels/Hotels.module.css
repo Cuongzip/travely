@@ -384,6 +384,9 @@
     .nextBtn {
         right: -12px;
     }
+    .label {
+        display: none !important;
+    }
 }
 
 @media (max-width: 480px) {
