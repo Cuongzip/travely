@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container">
                 <div className={styles.top}>
                     <div className={styles.logo}>
-                        <spa>Travely</spa>
+                        <span>Travely</span>
                         <span>.com</span>
                     </div>
 

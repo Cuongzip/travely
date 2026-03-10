@@ -1,0 +1,16 @@
+.navList {
+    display: flex;
+}
+
+.navLink {
+    padding: 7px 15px;
+    color: var(--text-primary);
+}
+.navLink:hover {
+    color: var(--text-secondary);
+}
+@media (max-width: 850px) {
+    .nav {
+        display: none;
+    }
+}

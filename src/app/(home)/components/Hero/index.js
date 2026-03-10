@@ -71,6 +71,7 @@ export default function Hero({ data }) {
     const stopAutoSlide = () => {
         clearInterval(intervalId.current);
     };
+
     const resetAutoSlide = () => {
         clearInterval(intervalId.current);
         startAutoSlide();
@@ -78,7 +79,6 @@ export default function Hero({ data }) {
 
     useEffect(() => {
         startAutoSlide();
-
         return () => clearInterval(intervalId.current);
     }, []);
 

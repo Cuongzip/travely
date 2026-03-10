@@ -1,0 +1,11 @@
+.user {
+    color: var(--text-primary);
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+@media (max-width: 850px) {
+    .user {
+        display: none;
+    }
+}
